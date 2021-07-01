@@ -55,11 +55,6 @@ static int on_request(request_rec *r) {
     // Current normalized public html (DOCUMENT_LOCATION gets only default)
     const char *document_root = realpath(ap_document_root(r), NULL);
 
-    ap_log_rerror(
-        APLOG_MARK, APLOG_ERR, 0, r,
-        "document_root: %s", document_root
-    );
-
     // Load Jinja2 module
     PyObject *py_jinja2 = PyImport_ImportModule("jinja2");
     if(py_jinja2 == NULL) {
