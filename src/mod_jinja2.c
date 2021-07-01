@@ -1,24 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "httpd.h"
-#include "http_log.h"
-#include "http_protocol.h"
-
-#include "http_core.h"
-// ap_document_root()
-
-#define PY_SSIZE_T_CLEAN
-#include <Python.h>
-
-
-/* const char * ap_document_root(request_rec *r) {
-    core_server_config *sconf;
-    core_request_config *rconf = ap_get_core_module_config(r->request_config);
-    if (rconf->document_root)
-        return rconf->document_root;
-    sconf = ap_get_core_module_config(r->server->module_config);
-    return sconf->ap_document_root;
-} */
+#include "mod_jinja2.h"
 
 /**
  * Event: On HTTP request in thread.
