@@ -184,14 +184,15 @@ static int on_request(request_rec *r) {
         PyObject *function = PyObject_GetAttrString(template, "render");
         PyObject *args = PyTuple_New(0);
         PyObject *kwargs = Py_BuildValue(
-            "{sOsOsOsOsOsOss}",
-            "os",       py_os,
-            "io",       py_io,
-            "datetime", py_datetime,
-            "time",     py_time,
-            "re",       py_re,
-            "json",     py_json,
-            "filename", relative_filename
+            "{sOsOsOsOsOsOssss}",
+            "os",            py_os,
+            "io",            py_io,
+            "datetime",      py_datetime,
+            "time",          py_time,
+            "re",            py_re,
+            "json",          py_json,
+            "filename",      relative_filename,
+            "document_root", document_root
         );
         template_output = PyObject_Call(function, args, kwargs);
 
