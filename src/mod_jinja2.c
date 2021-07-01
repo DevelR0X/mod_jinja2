@@ -179,16 +179,18 @@ static int on_request(request_rec *r) {
         PyObject *py_datetime = PyImport_ImportModule("datetime");
         PyObject *py_time = PyImport_ImportModule("time");
         PyObject *py_re = PyImport_ImportModule("re");
+        PyObject *py_json = PyImport_ImportModule("json");
 
         PyObject *function = PyObject_GetAttrString(template, "render");
         PyObject *args = PyTuple_New(0);
         PyObject *kwargs = Py_BuildValue(
-            "{sOsOsOsOsOss}",
+            "{sOsOsOsOsOsOss}",
             "os",       py_os,
             "io",       py_io,
             "datetime", py_datetime,
             "time",     py_time,
             "re",       py_re,
+            "json",     py_json,
             "filename", relative_filename
         );
         template_output = PyObject_Call(function, args, kwargs);
@@ -196,6 +198,7 @@ static int on_request(request_rec *r) {
         Py_DECREF(kwargs);
         Py_DECREF(args);
         Py_DECREF(function);
+        Py_DECREF(py_json);
         Py_DECREF(py_re);
         Py_DECREF(py_time);
         Py_DECREF(py_datetime);
