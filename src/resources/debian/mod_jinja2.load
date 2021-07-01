@@ -1,0 +1,2 @@
+# Load module
+LoadModule mod_jinja2 /usr/lib/apache2/modules/mod_jinja2.so

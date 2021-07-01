@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+        <title>Example - {% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+            <div class="container">
+                <a class="navbar-brand" href="/">Main</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-id" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="nav-id">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item {% if (os.path.dirname(filename) == 'section-a') %}active{% endif %}">
+                            <a class="nav-link" href="/section-a/">Section A</a>
+                        </li>
+                        <li class="nav-item {% if (os.path.dirname(filename) == 'section-b') %}active{% endif %}">
+                            <a class="nav-link" href="/section-b/">Section B</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <main role="main" class="mb-5">
+                <h1>{{ self.title() }}</h1>
+                <hr class="mt-0" />
+                <div class="mt-4">
+                    {% block body %}{% endblock %}
+                </div>
+            </main>
+            <footer>
+                <hr />
+                <center>
+                    <small>Company &copy; {{ time.strftime('%Y') }}</small>
+                </center>
+            </footer>
+        </div>
+    </body>
+</html>
