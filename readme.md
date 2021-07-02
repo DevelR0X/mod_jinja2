@@ -1,6 +1,8 @@
 # Jinja2 module for Apache httpd
 
 Apache module for native render Jinja2 templates powered by Python/C API v3.x.
+Designed for informative WEB sites and avoid the abuse of using heavy CMS
+systems for simple content.
 
 
 ## Advantages
