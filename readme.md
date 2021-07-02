@@ -12,6 +12,8 @@ GNU/Linux distributions:
 
 - Debian o Rhel distribution based.
 - Python3.
+- Python3 Development headers (*for compilation only*).
+- Apache HTTP Development headers (*for compilation only*).
 - Jinja2 module for python3.
 - Apache httpd evn vars for load python3 library.
 
