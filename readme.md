@@ -61,8 +61,8 @@ root@server:~# make uninstall;
 
 ## How to use?
 
-It's very simple, you make a `.j2` file like as php and use the document root
-(`public_html`) as Jinja root path. By example:
+It's very simple, you make a `.j2` file like as `php` file and use the document
+root (`public_html`) as Jinja2 root path. By example:
 
 Code for `index.j2`:
 
