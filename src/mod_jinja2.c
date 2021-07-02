@@ -131,11 +131,17 @@ static int on_request(request_rec *r) {
         return HTTP_INTERNAL_SERVER_ERROR;
     }
 
-    // Secure substraction
+    // Secure substraction for relative filename
     char *relative_filename = calloc(strlen(r->filename) - strlen(document_root), 1);
     long unsigned int i;
     for(i = strlen(document_root) + 1; i <= strlen(r->filename); i++) {
         relative_filename[i - strlen(document_root) - 1] = r->filename[i];
+    }
+
+    // Substraction for request uri (r->uri is broken when use mod_rewrite)
+    char *request_uri = calloc(strlen(r->the_request), 1);
+    for(i = strlen(r->method) + 1; i <= (strlen(r->the_request) - strlen(r->protocol) - 1); i++) {
+        request_uri[i - strlen(r->method) - 1] = r->the_request[i];
     }
 
     // Get jinja2 template object with the context
@@ -162,7 +168,8 @@ static int on_request(request_rec *r) {
         );
 
         // Free all
-        // free(relative_filename);
+        free(relative_filename);
+        free(request_uri);
 
         // Decrease all python pointers
         Py_DECREF(template_env);
@@ -195,7 +202,7 @@ static int on_request(request_rec *r) {
             "json",          py_json,
             "filename",      relative_filename,
             "document_root", document_root,
-            "uri",           r->uri
+            "uri",           request_uri
         );
         template_output = PyObject_Call(function, args, kwargs);
 
@@ -244,7 +251,8 @@ static int on_request(request_rec *r) {
         }
 
         // Free all
-        // free(relative_filename);
+        free(relative_filename);
+        free(request_uri);
 
         // Decrease all python pointers
         Py_DECREF(template);
@@ -265,7 +273,8 @@ static int on_request(request_rec *r) {
     ap_rprintf(r, "%s", template_rendered);
 
     // Free all
-    // free(relative_filename);
+    free(relative_filename);
+    free(request_uri);
 
     // Decrease all python pointers
     Py_DECREF(template_output);
