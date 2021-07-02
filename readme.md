@@ -5,7 +5,7 @@ Apache module for native render Jinja2 templates powered by Python/C API v3.x.
 
 ## Advantages
 
-- Fast load and low cost in memory. Save on physical infrastructure.
+- Fast load and low cost in memory for client and server. Save on physical infrastructure.
 - Sites are more secure because there's no database or dynamic content that can be hacked.
 - Less maintenance involved. No content management system (CMS).
 
