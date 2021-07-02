@@ -59,6 +59,48 @@ root@server:~# make uninstall;
 ```
 
 
+## How to use?
+
+It's very simple, you make a `.j2` file like as php and use the document root
+(`public_html`) as Jinja root path. By example:
+
+Code for `index.j2`:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>My Website</title>
+    </head>
+    <body>
+        {% include '/header.html' %}
+        <h1>Title</h1>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+            scelerisque nec est eu condimentum. Cras nec risus diam.
+        </p>
+        {% include '/footer.html' %}
+    </body>
+</html>
+```
+
+For more info check out the [Jinja2 documentation](https://jinja.palletsprojects.com/en/3.0.x/templates/).
+
+## Available variables
+
+- `os` is the Python3 `os` module.
+- `io` is the Python3 `io` module. Useful for calling native file manipulation functions like `io.open()`.
+- `datetime` is the Python3 `datetime` module.
+- `time` is the Python3 `time` module.
+- `re` is the Python3 `re` module.
+- `json` is the Python3 `json` module.
+- `filename` is the real filename loaded (not the rewrited URL).
+- `document_root` is the main public HTML folder of Apache Server (`DocumentRoot` directive).
+- `uri` is the full request uri, by example `/abc/def.j2?ghi=jkl`.
+
+And all other Jinja2 native variables, filters and blocks.
+
+
 ## Who uses it?
 
 Look at the official public repository of the 
