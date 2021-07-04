@@ -183,23 +183,25 @@ static int on_request(request_rec *r) {
     // Render template
     PyObject* template_output;
     {
-        PyObject *py_os = PyImport_ImportModule("os");
-        PyObject *py_io = PyImport_ImportModule("io");
+        PyObject *py_os       = PyImport_ImportModule("os");
+        PyObject *py_io       = PyImport_ImportModule("io");
         PyObject *py_datetime = PyImport_ImportModule("datetime");
-        PyObject *py_time = PyImport_ImportModule("time");
-        PyObject *py_re = PyImport_ImportModule("re");
-        PyObject *py_json = PyImport_ImportModule("json");
+        PyObject *py_time     = PyImport_ImportModule("time");
+        PyObject *py_re       = PyImport_ImportModule("re");
+        PyObject *py_json     = PyImport_ImportModule("json");
+        PyObject *py_glob     = PyImport_ImportModule("glob");
 
         PyObject *function = PyObject_GetAttrString(template, "render");
         PyObject *args = PyTuple_New(0);
         PyObject *kwargs = Py_BuildValue(
-            "{sOsOsOsOsOsOssssss}",
+            "{sOsOsOsOsOsOsOssssss}",
             "os",            py_os,
             "io",            py_io,
             "datetime",      py_datetime,
             "time",          py_time,
             "re",            py_re,
             "json",          py_json,
+            "glob",          py_glob,
             "filename",      relative_filename,
             "document_root", document_root,
             "uri",           request_uri
@@ -209,6 +211,7 @@ static int on_request(request_rec *r) {
         Py_DECREF(kwargs);
         Py_DECREF(args);
         Py_DECREF(function);
+        Py_DECREF(py_glob);
         Py_DECREF(py_json);
         Py_DECREF(py_re);
         Py_DECREF(py_time);
