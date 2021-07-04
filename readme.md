@@ -108,6 +108,7 @@ For more info check out the [Jinja2 documentation](https://jinja.palletsprojects
 - `time` is the Python3 `time` module.
 - `re` is the Python3 `re` module.
 - `json` is the Python3 `json` module.
+- `glob` is the Python3 `glob` module. Useful for get specific files and folder in one line.
 - `filename` is the real filename loaded (not the rewrited URL).
 - `document_root` is the main public HTML folder of Apache Server (`DocumentRoot` directive).
 - `uri` is the full request uri, by example `/abc/def.j2?ghi=jkl`.
